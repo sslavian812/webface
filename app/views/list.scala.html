@@ -1,0 +1,11 @@
+@(users: List[DisplayUser])(implicit lang: Lang)
+
+@main(Messages("application.name")) {
+    <dl class="users">
+        @for(user <- users) {
+            <dt><a href="@user.link">@user.link</a></dt>
+            <dd>@user.snippet</dd>
+            <br>
+        }
+    </dl>
+}
