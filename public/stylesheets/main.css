@@ -23,3 +23,9 @@ footer { clear: both; text-align: right; }
 dl.products { margin-top: 0; }
 dt { clear: right; }
 .barcode { float:right; margin-bottom: 10px; border: 4px solid white; }
+
+.container-full {
+    margin: 0 auto;
+    width: 100%;
+    margin: 5px;
+}
