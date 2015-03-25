@@ -1,7 +1,5 @@
 package controllers
 
-
-import controllers.DisplayUsers._
 import models.DisplayUser
 import play.api.mvc.{Action, Controller}
 
