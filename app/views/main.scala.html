@@ -1,4 +1,4 @@
-@(title: String)(content: Html)(searchBar:Html = play.twirl.api.Html(""))(implicit lang: Lang)
+@(title: String)(content: Html)(implicit lang: Lang)
 
 <!DOCTYPE html>
 <html>
@@ -22,9 +22,10 @@
                 </div>
             </div>
             <div class="container">
-                @searchBar
                 @content
+            </div>
                 <hr>
+            <div class="container">
                 @footer()
             </div>
         </div>
