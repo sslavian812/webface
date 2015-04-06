@@ -1,19 +1,14 @@
 package models
 
 import java.io.{InputStreamReader, BufferedReader}
-import java.util
 
 import org.apache.http.entity.StringEntity
 import org.apache.http.impl.client.DefaultHttpClient
-import org.json4s
 import org.json4s._
 import org.json4s.jackson.JsonMethods._
 
 import scala.io.Source
-import scala.util.parsing.json.JSONObject
-import scalaj.http.{HttpOptions, Http}
 
-import org.apache.http.client._
 import org.apache.http.client.methods.HttpPost
 
 
@@ -147,6 +142,8 @@ object DisplayUser {
 
       hl2.foreach(e => snippet ++=" ... " + e.extract[String] + " ... ")
 
+      snippet = snippet.trim().replaceAll("<br>", " ")
+      snippet = snippet.trim().replaceAll(" +", " ")
       responseUsers ::= DisplayUser(link, snippet)
     }
 
