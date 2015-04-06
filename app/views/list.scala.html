@@ -3,7 +3,7 @@
     <dl class="users">
         @for(user <- users) {
             <dt><a href="@user.link">@user.link</a></dt>
-            <dd>@user.snippet</dd>
+            <dd>@Html(user.snippet)</dd>
             <br>
         }
     </dl>

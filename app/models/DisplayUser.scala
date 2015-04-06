@@ -48,6 +48,8 @@ object DisplayUser {
                                      }
                                  },
                                  "highlight": {
+                                     "pre_tags" : ["<b>"],
+                                     "post_tags" : ["</b>"],
                                      "fields": {
                                          "*": {}
                                      }
