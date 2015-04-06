@@ -13,7 +13,7 @@ object Search extends Controller {
 
   def show(query: String) =  Action {
     implicit request =>
-      val users: List[DisplayUser] = DisplayUser.getByQuery(query)
+      val users: List[DisplayUser] = DisplayUser.getUsersAndSnippets(query)
       Ok(views.html.twoElementContainer(views.html.searchForm())(views.html.list(users)))
   }
 
