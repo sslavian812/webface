@@ -14,3 +14,8 @@ GET        /top10                controllers.Search.top10
 GET        /search/:query        controllers.Search.show(query: String)
 GET        /search               controllers.Search.show(query: String)
 GET        /search               controllers.Search.empty
+
+
+GET        /test                 controllers.Application.test
+
+

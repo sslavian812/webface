@@ -1,8 +1,12 @@
 @main(Messages("application.name")) {
-    <div class="container">
-    <img src="/assets/images/logo2.png" class="img-responsive" alt="Responsive image">
+    <div class="row-fluid">
+        <div class="span6 offset3">
+            <img src="/assets/images/logo2.png" class="img-responsive" alt="logo">
+        </div>
     </div>
-    <div class="container">
-    @views.html.searchForm()
+    <div class="row-fluid">
+        <div class="span8 offset2">
+        @views.html.searchForm()
+        </div>
     </div>
 }

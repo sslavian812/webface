@@ -7,7 +7,6 @@ import org.json4s._
 import org.json4s.jackson.JsonMethods._
 import scala.io.Source
 import org.apache.http.client.methods.HttpPost
-import scala.collection.mutable
 
 
 case class DisplayUser(link: String, snippet: String)
@@ -20,6 +19,7 @@ object DisplayUser {
   val search_prefix = "http://localhost:9200/vk/user/_search"
   val index_prefix = "http://localhost:9200/vk"
   val search = "/_search"
+  val link = "http://vk.com/id"
 
   val json_request_part1 = """{
                            "query": {
@@ -105,7 +105,7 @@ object DisplayUser {
 
   def makePOSTRequestWithData(list : List[String]) : String =
   {
-    var entity = list.reduce((a,b) => a+b)
+    val entity = list.reduce((a,b) => a+b)
     val post = new HttpPost(index_prefix + search)
     post.setHeader("Content-type", "application/json")
     post.setEntity(new StringEntity(entity, "UTF-8"))
@@ -117,7 +117,7 @@ object DisplayUser {
     val rd: BufferedReader = new BufferedReader(new InputStreamReader(response.getEntity.getContent, "UTF-8"))
     val builder = new StringBuilder()
     try {
-      var line = rd.readLine
+      val line = rd.readLine
       builder.append(line)
       //      while (line != null) {
       //        builder.append(line + "\n")
@@ -131,29 +131,6 @@ object DisplayUser {
   }
 
   def getUsersAndSnippets(query: String): List[DisplayUser] = {
-    // getting all the highligted snippets
-//    val post = new HttpPost(index_prefix + search)
-//    post.setHeader("Content-type", "application/json")
-//    post.setEntity(new StringEntity(json_request_part1 + query + json_request_part2, "UTF-8"))
-//
-//    val client = new DefaultHttpClient
-//    val response = client.execute(post)
-//
-//
-//    val rd: BufferedReader = new BufferedReader(new InputStreamReader(response.getEntity.getContent, "UTF-8"))
-//    val builder = new StringBuilder()
-//    try {
-//      var line = rd.readLine
-//      builder.append(line)
-//      //      while (line != null) {
-//      //        builder.append(line + "\n")
-//      //        line = rd.readLine
-//      //      }
-//    } finally {
-//      rd.close
-//    }
-//    val s = builder.toString
-
     var s = makePOSTRequestWithData(List(json_request_part1, query, json_request_part2))
     var parsed: JValue = parse(s)
     val listHits: List[JValue] = (parsed \ "hits" \ "hits").children.toList
@@ -181,8 +158,7 @@ object DisplayUser {
         old = snippetsToUsersMap(userId)
       snippetsToUsersMap(userId) = old + " " + snippet
     }
-
-    // map id -> snippet created
+    // map (id -> snippet) created
 
     s = makePOSTRequestWithData(List(json_sort_part1, query, json_sort_part2))
     parsed = parse(s)
@@ -190,12 +166,16 @@ object DisplayUser {
 
     var responseUsers: List[DisplayUser] = List.empty
 
-    val link = "http://vk.com/id"
+    val ids = listUsers.map(
+      user => (user \ "_id").extract[String]).filter(
+        u => snippetsToUsersMap.contains(u)
+      )
+    // got relevant ids in correct order
 
-    responseUsers = listUsers.map(user =>
+    responseUsers = ids.map(user =>
       DisplayUser(
-        link + (user \ "_id").extract[String],
-        snippetsToUsersMap((user \ "_id").extract[String])
+        link + user,
+        snippetsToUsersMap(user)
       )
     )
 

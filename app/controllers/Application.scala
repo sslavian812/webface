@@ -14,4 +14,8 @@ object Application extends Controller {
     Ok(views.html.about())
   }
 
+  def test() = Action {
+    Ok(views.html.gridFace("my title"))
+  }
+
 }
