@@ -67,6 +67,7 @@ object DisplayUser {
     "fields" : []
     }"""
 
+  @Deprecated
   def getTop10: List[DisplayUser] = {
     val s = Source.fromURL(search_prefix + "?sort=followers_count:desc&size=10&fields=id,followers_count").mkString
     val parsed: JValue = parse(s)
@@ -103,9 +104,8 @@ object DisplayUser {
   }
 
 
-  def makePOSTRequestWithData(list : List[String]) : String =
-  {
-    val entity = list.reduce((a,b) => a+b)
+  def makePOSTRequestWithData(list: List[String]): String = {
+    val entity = list.reduce((a, b) => a + b)
     val post = new HttpPost(index_prefix + search)
     post.setHeader("Content-type", "application/json")
     post.setEntity(new StringEntity(entity, "UTF-8"))
@@ -154,7 +154,7 @@ object DisplayUser {
       snippet = snippet.trim().replaceAll(" +", " ")
 
       var old = ""
-      if(snippetsToUsersMap.contains(userId))
+      if (snippetsToUsersMap.contains(userId))
         old = snippetsToUsersMap(userId)
       snippetsToUsersMap(userId) = old + " " + snippet
     }
@@ -172,12 +172,32 @@ object DisplayUser {
       )
     // got relevant ids in correct order
 
-    responseUsers = ids.map(user =>
-      DisplayUser(
-        link + user,
-        snippetsToUsersMap(user)
+
+
+ //TODO:  possible performance loss: multiple assignments in "foreach":
+    ids.foreach(userID => {
+      responseUsers = responseUsers :+ DisplayUser(
+        link + userID,
+        snippetsToUsersMap(userID)
       )
-    )
+      snippetsToUsersMap.remove(userID)
+    })
+
+    snippetsToUsersMap.forall(e => {
+      responseUsers = responseUsers :+ DisplayUser(
+        link + e._1,
+        e._2
+      )
+      true
+    })
+
+
+//    responseUsers = ids.map(user =>
+//      DisplayUser(
+//        link + user,
+//        snippetsToUsersMap(user)
+//      )
+//    )
 
     responseUsers
   }
