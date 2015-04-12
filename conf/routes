@@ -10,12 +10,13 @@ GET        /assets/*file         controllers.Assets.at(path="/public", file)
 #GET        /favicon.ico         controllers.Assets.at(path="/public/images", file="favicon.ico")
 
 GET        /about                controllers.Application.about
-GET        /top10                controllers.Search.top10
+#GET        /top10                controllers.Search.top10
 GET        /search/:query        controllers.Search.show(query: String)
 GET        /search               controllers.Search.show(query: String)
 GET        /search               controllers.Search.empty
 
 
-GET        /test                 controllers.Application.test
+GET        /test                 controllers.Application.test()
+GET        /admin                controllers.Application.admin()
 
 

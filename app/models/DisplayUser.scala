@@ -5,21 +5,18 @@ import org.apache.http.entity.StringEntity
 import org.apache.http.impl.client.DefaultHttpClient
 import org.json4s._
 import org.json4s.jackson.JsonMethods._
-import scala.io.Source
 import org.apache.http.client.methods.HttpPost
 
 
 case class DisplayUser(link: String, snippet: String)
 
 object DisplayUser {
-
   implicit val formats = org.json4s.DefaultFormats
 
-  val prefix = "http://vk.com/id"
-  val search_prefix = "http://localhost:9200/vk/user/_search"
-  val index_prefix = "http://localhost:9200/vk"
-  val search = "/_search"
-  val link = "http://vk.com/id"
+  val INDEX_PREFIX = "http://localhost:9200/vk"
+  val SEARCH = "/_search"
+  val LINK = "http://vk.com/id"
+  val USER = "user"
 
   val json_request_part1 = """{
                            "query": {
@@ -67,46 +64,32 @@ object DisplayUser {
     "fields" : []
     }"""
 
-  @Deprecated
-  def getTop10: List[DisplayUser] = {
-    val s = Source.fromURL(search_prefix + "?sort=followers_count:desc&size=10&fields=id,followers_count").mkString
-    val parsed: JValue = parse(s)
-
-    val parsedUsers = parsed \ "hits" \ "hits" // json array of users
-
-    val listUsers: List[JValue] = parsedUsers.children.toList
-
-    val displayUsers = listUsers.map(obj => DisplayUser(
-      link = prefix + (obj \ "fields" \ "id")(0).values.toString,
-      snippet = "followers: " + (obj \ "fields" \ "followers_count")(0).values.toString
-    ))
-    displayUsers
-  }
-
-
-  @Deprecated
-  def getByQuery(query: String): List[DisplayUser] = {
-    val encodedQuery = java.net.URLEncoder.encode(query, "UTF-8")
-    val s = Source.fromURL(search_prefix + "?q=" + encodedQuery
-      + "&sort=followers_count:desc" + "&size=10" + "&fields=id,followers_count").mkString
-
-    val parsed: JValue = parse(s)
-
-    val parsedUsers = parsed \ "hits" \ "hits" // json array of users
-
-    val listUsers: List[JValue] = parsedUsers.children.toList
-
-    val displayUsers = listUsers.map(obj => DisplayUser(
-      link = prefix + (obj \ "fields" \ "id")(0).values.toString,
-      snippet = "followers: " + (obj \ "fields" \ "followers_count")(0).values.toString
-    ))
-    displayUsers
-  }
+//  @Deprecated
+//  def getTop10: List[DisplayUser] = {
+//    val s = Source.fromURL(search_prefix + "?sort=followers_count:desc&size=10&fields=id,followers_count").mkString
+//    val parsed: JValue = parse(s)
+//
+//    val parsedUsers = parsed \ "hits" \ "hits" // json array of users
+//
+//    val listUsers: List[JValue] = parsedUsers.children.toList
+//
+//    val displayUsers = listUsers.map(obj => DisplayUser(
+//      link = prefix + (obj \ "fields" \ "id")(0).values.toString,
+//      snippet = "followers: " + (obj \ "fields" \ "followers_count")(0).values.toString
+//    ))
+//    displayUsers
+//  }
 
 
-  def makePOSTRequestWithData(list: List[String]): String = {
+  /**
+   * Makes HTTP POST request with String Entity formed by concatenation of all elements of list
+   * @param list Strings to be concatenated to form entity
+   * @param url Strings url to be requested
+   * @return String, representing response
+   */
+  def makePOSTRequestWithData(list: List[String], url: String): String = {
     val entity = list.reduce((a, b) => a + b)
-    val post = new HttpPost(index_prefix + search)
+    val post = new HttpPost(url)
     post.setHeader("Content-type", "application/json")
     post.setEntity(new StringEntity(entity, "UTF-8"))
 
@@ -130,8 +113,14 @@ object DisplayUser {
     builder.toString
   }
 
+  /**
+   * Forms a list of DisplayUser objects, creates links and snippets.
+   * @param query a query string
+   * @return list of DisplayUser objects with links and snippets
+   */
   def getUsersAndSnippets(query: String): List[DisplayUser] = {
-    var s = makePOSTRequestWithData(List(json_request_part1, query, json_request_part2))
+    var s = makePOSTRequestWithData(List(json_request_part1, query, json_request_part2),
+      INDEX_PREFIX + SEARCH)
     var parsed: JValue = parse(s)
     val listHits: List[JValue] = (parsed \ "hits" \ "hits").children.toList
 
@@ -140,16 +129,13 @@ object DisplayUser {
     for (hit <- listHits) {
       var userId = ""
       var snippet = ""
-      if ((hit \ "_type").values == "user")
+      if (USER.equals((hit \ "_type").values))
         userId = (hit \ "_id").values.toString
       else
         userId = (hit \ "fields" \ "_parent").values.toString
 
-      val hlFields = (hit \ "highlight").children
-      val hl2 = hlFields.map(e => e.children).flatMap(e => e)
-
-      hl2.foreach(e => snippet ++= " ... " + e.extract[String] + " ... ")
-
+      val hlFields = (hit \ "highlight").children.map(e => e.children).flatMap(e => e)
+      hlFields.foreach(e => snippet ++= e.extract[String] + "... ")
       snippet = snippet.trim().replaceAll("<br>", " ")
       snippet = snippet.trim().replaceAll(" +", " ")
 
@@ -160,46 +146,40 @@ object DisplayUser {
     }
     // map (id -> snippet) created
 
-    s = makePOSTRequestWithData(List(json_sort_part1, query, json_sort_part2))
+    s = makePOSTRequestWithData(List(json_sort_part1, query, json_sort_part2), INDEX_PREFIX + SEARCH)
     parsed = parse(s)
     val listUsers: List[JValue] = (parsed \ "hits" \ "hits").children.toList
 
-    var responseUsers: List[DisplayUser] = List.empty
 
+    // we don't want to show users without snippets:
     val ids = listUsers.map(
       user => (user \ "_id").extract[String]).filter(
         u => snippetsToUsersMap.contains(u)
       )
     // got relevant ids in correct order
 
+    var responseUsers: List[DisplayUser] = List.empty
 
+    //TODO:  possible performance loss: multiple assignments in "foreach":
 
- //TODO:  possible performance loss: multiple assignments in "foreach":
+    // arranging the most relevant users and it's snippets in sorted order
     ids.foreach(userID => {
       responseUsers = responseUsers :+ DisplayUser(
-        link + userID,
+        LINK + userID,
         snippetsToUsersMap(userID)
       )
       snippetsToUsersMap.remove(userID)
     })
 
+    // appending other founded users and it's snippets in any order
     snippetsToUsersMap.forall(e => {
       responseUsers = responseUsers :+ DisplayUser(
-        link + e._1,
+        LINK + e._1,
         e._2
       )
-      true
+      true      // <----TODO: seems to be workaround
     })
-
-
-//    responseUsers = ids.map(user =>
-//      DisplayUser(
-//        link + user,
-//        snippetsToUsersMap(user)
-//      )
-//    )
 
     responseUsers
   }
-
 }

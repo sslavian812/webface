@@ -18,4 +18,6 @@ object Application extends Controller {
     Ok(views.html.gridFace("my title"))
   }
 
+  def admin() = TODO
+
 }

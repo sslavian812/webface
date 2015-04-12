@@ -14,13 +14,13 @@ object Search extends Controller {
   def show(query: String) =  Action {
     implicit request =>
       val users: List[DisplayUser] = DisplayUser.getUsersAndSnippets(query)
-//      Ok(views.html.twoElementContainer(views.html.searchForm())(views.html.list(users)))
       Ok(views.html.main(query)(views.html.list(users)))
   }
 
-  def top10 =  Action {implicit request =>
-    val users = DisplayUser.getTop10
-    Ok(views.html.list(users))
-  }
+//  @Deprecated
+//  def top10 =  Action {implicit request =>
+//    val users = DisplayUser.getTop10
+//    Ok(views.html.list(users))
+//  }
 
 }
