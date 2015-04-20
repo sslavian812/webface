@@ -11,7 +11,7 @@ application.secret="%APPLICATION_SECRET%"
 # ~~~~~
 application.langs="en"
 
-#environment.user=${USERNAME}
+//environment.user=${USERNAME}
 
 # Global object class
 # ~~~~~
