@@ -1,0 +1,105 @@
+2015-04-18T16:17:15.239856+00:00 app[web.1]: Configuration error: Configuration error[application.conf: 14: Could not resolve substitution to a value: ${USERNAME}]
+2015-04-18T16:17:15.241555+00:00 app[web.1]: 	at play.api.WithDefaultGlobal$$anonfun$play$api$WithDefaultGlobal$$globalInstance$1.apply(Application.scala:53)
+2015-04-18T16:17:15.242064+00:00 app[web.1]: 	at play.api.DefaultApplication.play$api$WithDefaultConfiguration$$fullConfiguration(Application.scala:402)
+2015-04-18T16:17:15.242118+00:00 app[web.1]: 	at play.api.WithDefaultConfiguration$class.configuration(Application.scala:84)
+2015-04-18T16:17:15.242176+00:00 app[web.1]: 	at play.api.DefaultApplication.configuration(Application.scala:402)
+2015-04-18T16:17:15.242279+00:00 app[web.1]: 	at play.api.DefaultApplication.<init>(Application.scala:402)
+2015-04-18T16:17:15.242227+00:00 app[web.1]: 	at play.api.Application$class.$init$(Application.scala:274)
+2015-04-18T16:17:15.242337+00:00 app[web.1]: 	at play.core.StaticApplication.<init>(ApplicationProvider.scala:53)
+2015-04-18T16:17:15.241836+00:00 app[web.1]: 	at play.api.WithDefaultGlobal$class.global(Application.scala:68)
+2015-04-18T16:17:15.241945+00:00 app[web.1]: 	at play.api.WithDefaultConfiguration$class.play$api$WithDefaultConfiguration$$fullConfiguration(Application.scala:82)
+2015-04-18T16:17:15.241899+00:00 app[web.1]: 	at play.api.DefaultApplication.global(Application.scala:402)
+2015-04-18T16:17:15.242016+00:00 app[web.1]: 	at play.api.DefaultApplication.play$api$WithDefaultConfiguration$$fullConfiguration$lzycompute(Application.scala:402)
+2015-04-18T16:17:15.242610+00:00 app[web.1]: 	at play.core.server.NettyServer$.main(NettyServer.scala:284)
+2015-04-18T16:17:15.242378+00:00 app[web.1]: 	at play.core.server.NettyServer$.createServer(NettyServer.scala:253)
+2015-04-18T16:17:15.242441+00:00 app[web.1]: 	at play.core.server.NettyServer$$anonfun$main$3.apply(NettyServer.scala:289)
+2015-04-18T16:17:15.242546+00:00 app[web.1]: 	at scala.Option.map(Option.scala:145)
+2015-04-18T16:17:15.242650+00:00 app[web.1]: 	at play.core.server.NettyServer.main(NettyServer.scala)
+2015-04-18T16:17:15.243019+00:00 app[web.1]: 	at com.typesafe.config.impl.ConfigReference.resolveSubstitutions(ConfigReference.java:87)
+2015-04-18T16:17:15.243079+00:00 app[web.1]: 	at com.typesafe.config.impl.ResolveSource.resolveCheckingReplacement(ResolveSource.java:110)
+2015-04-18T16:17:15.243155+00:00 app[web.1]: 	at com.typesafe.config.impl.ResolveContext.resolve(ResolveContext.java:114)
+2015-04-18T16:17:15.242495+00:00 app[web.1]: 	at play.core.server.NettyServer$$anonfun$main$3.apply(NettyServer.scala:284)
+2015-04-18T16:17:15.242962+00:00 app[web.1]: Caused by: com.typesafe.config.ConfigException$UnresolvedSubstitution: application.conf: 14: Could not resolve substitution to a value: ${USERNAME}
+2015-04-18T16:17:15.248993+00:00 app[web.1]: 	at com.typesafe.config.impl.SimpleConfigObject.resolveSubstitutions(SimpleConfigObject.java:321)
+2015-04-18T16:17:15.249042+00:00 app[web.1]: 	at com.typesafe.config.impl.SimpleConfigObject.resolveSubstitutions(SimpleConfigObject.java:25)
+2015-04-18T16:17:15.249090+00:00 app[web.1]: 	at com.typesafe.config.impl.ResolveSource.resolveCheckingReplacement(ResolveSource.java:110)
+2015-04-18T16:17:15.249150+00:00 app[web.1]: 	at com.typesafe.config.impl.ResolveContext.resolve(ResolveContext.java:114)
+2015-04-18T16:17:15.249204+00:00 app[web.1]: 	at com.typesafe.config.impl.SimpleConfigObject$1.modifyChildMayThrow(SimpleConfigObject.java:341)
+2015-04-18T16:17:15.248870+00:00 app[web.1]: 	at com.typesafe.config.impl.SimpleConfigObject$1.modifyChildMayThrow(SimpleConfigObject.java:341)
+2015-04-18T16:17:15.248927+00:00 app[web.1]: 	at com.typesafe.config.impl.SimpleConfigObject.modifyMayThrow(SimpleConfigObject.java:280)
+2015-04-18T16:17:15.249264+00:00 app[web.1]: 	at com.typesafe.config.impl.SimpleConfigObject.modifyMayThrow(SimpleConfigObject.java:280)
+2015-04-18T16:17:15.249316+00:00 app[web.1]: 	at com.typesafe.config.impl.SimpleConfigObject.resolveSubstitutions(SimpleConfigObject.java:321)
+2015-04-18T16:17:15.249368+00:00 app[web.1]: 	at com.typesafe.config.impl.SimpleConfigObject.resolveSubstitutions(SimpleConfigObject.java:25)
+2015-04-18T16:17:15.249507+00:00 app[web.1]: 	at com.typesafe.config.impl.ResolveContext.resolve(ResolveContext.java:114)
+2015-04-18T16:17:15.249457+00:00 app[web.1]: 	at com.typesafe.config.impl.ResolveSource.resolveCheckingReplacement(ResolveSource.java:110)
+2015-04-18T16:17:15.249609+00:00 app[web.1]: 	at com.typesafe.config.impl.SimpleConfig.resolveWith(SimpleConfig.java:70)
+2015-04-18T16:17:15.249558+00:00 app[web.1]: 	at com.typesafe.config.impl.ResolveContext.resolve(ResolveContext.java:149)
+2015-04-18T16:17:15.249676+00:00 app[web.1]: 	at com.typesafe.config.impl.SimpleConfig.resolve(SimpleConfig.java:60)
+2015-04-18T16:17:15.249755+00:00 app[web.1]: 	at com.typesafe.config.impl.SimpleConfig.resolve(SimpleConfig.java:33)
+2015-04-18T16:17:15.249978+00:00 app[web.1]: 	at com.typesafe.config.ConfigFactory.loadDefaultConfig(ConfigFactory.java:228)
+2015-04-18T16:17:15.250270+00:00 app[web.1]: 	at com.typesafe.config.impl.ConfigImpl.computeCachedConfig(ConfigImpl.java:86)
+2015-04-18T16:17:15.250157+00:00 app[web.1]: 	at com.typesafe.config.ConfigFactory$1.call(ConfigFactory.java:375)
+2015-04-18T16:17:15.250211+00:00 app[web.1]: 	at com.typesafe.config.impl.ConfigImpl$LoaderCache.getOrElseUpdate(ConfigImpl.java:58)
+2015-04-18T16:17:15.250373+00:00 app[web.1]: 	at com.typesafe.config.ConfigFactory.load(ConfigFactory.java:299)
+2015-04-18T16:17:15.250316+00:00 app[web.1]: 	at com.typesafe.config.ConfigFactory.load(ConfigFactory.java:375)
+2015-04-18T16:17:15.250025+00:00 app[web.1]: 	at com.typesafe.config.ConfigFactory.access$000(ConfigFactory.java:38)
+2015-04-18T16:17:15.250475+00:00 app[web.1]: 	at play.api.Configuration$.dontAllowMissingConfig(Configuration.scala:29)
+2015-04-18T16:17:15.250597+00:00 app[web.1]: 	at play.api.Configuration$.load(Configuration.scala:64)
+2015-04-18T16:17:15.250078+00:00 app[web.1]: 	at com.typesafe.config.ConfigFactory$1.call(ConfigFactory.java:378)
+2015-04-18T16:17:15.250418+00:00 app[web.1]: 	at play.api.Configuration$.dontAllowMissingConfig$lzycompute(Configuration.scala:29)
+2015-04-18T16:17:15.249796+00:00 app[web.1]: 	at com.typesafe.config.ConfigFactory.load(ConfigFactory.java:202)
+2015-04-18T16:17:15.249855+00:00 app[web.1]: 	at com.typesafe.config.ConfigFactory.load(ConfigFactory.java:114)
+2015-04-18T16:17:15.249914+00:00 app[web.1]: 	at com.typesafe.config.ConfigFactory.load(ConfigFactory.java:136)
+2015-04-18T16:17:15.250600+00:00 app[web.1]: 	... 34 more
+2015-04-18T16:1
+7:16.208123+00:00 heroku[web.1]: Process exited with status 255
+2015-04-18T16:17:16.222334+00:00 heroku[web.1]: State changed from starting to crashed
+2015-04-18T16:18:30.756243+00:00 heroku[api]: Scale to web=1 by sslavian812@yandex.ru
+2015-04-18T16:20:09.655383+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=social-analyst.herokuapp.com request_id=f7ee1e76-c06c-40e4-8f35-e795766528a4 fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
+2015-04-18T16:20:11.548044+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=social-analyst.herokuapp.com request_id=33c6e604-a6ba-43f8-a054-7dd9120872d7 fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
+2015-04-18T16:20:11.947189+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=social-analyst.herokuapp.com request_id=b36da642-5155-410b-90ee-703b72761769 fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
+2015-04-18T16:20:20.838608+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=social-analyst.herokuapp.com request_id=eddecc27-5cf7-44da-baeb-82b1c134f87a fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
+2015-04-18T16:20:26.766932+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=social-analyst.herokuapp.com r
+equest_id=b93db28e-3790-4702-adfe-114597b02407 fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
+2015-04-18T16:20:27.681905+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=social-analyst.herokuapp.com request_id=dde4ec65-2e57-423a-bcfd-5e2ebad85ba6 fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
+2015-04-18T16:22:03.082537+00:00 heroku[api]: Scale to web=0 by sslavian812@yandex.ru
+2015-04-18T16:22:03.203303+00:00 heroku[web.1]: State changed from crashed to down
+2015-04-18T16:23:09.855411+00:00 heroku[api]: Scale to web=0 by sslavian812@yandex.ru
+2015-04-18T16:23:15.788587+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=social-analyst.herokuapp.com request_id=a9c902bf-d5bc-4855-9a40-9b73a249f41a fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
+2015-04-18T16:23:16.860884+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=social-analyst.herokuapp.com request_id=d1f2b15c-4507-4fdf-a145-62d097402155 fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
+2015-04-18T16:23:18.083171+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=social-analyst.herokuapp.com request_id=4446790b-4229-43aa-b9c8-b3b4b2268db8 fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
+2015-04-18T16:23:18.938764+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=social-analyst.herokuapp.com request_id=70df5686-40ae-4bfb-af8c-312c5481b9b1 fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
+2015-04-18T16:29:53.918785+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=social-analyst.herokuapp.com request_id=732f8202-e21e-4592-9bc5-1e6404368ca8 fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
+2015-04-18T16:29:54.738533+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=social-analyst.herokuapp.com request_id=88b2e475-7d4c-4f17-b7e9-a509c3398d85 fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
+2015-04-18T16:34:28.861485+00:00 heroku[api]: Set maintenance mode on by sslavian812@yandex.ru
+2015-04-18T16:34:37.120164+00:00 heroku[router]: at=info code=H80 desc="Maintenance mode" method=GET path="/" host=social-analyst.herokuapp.com request_id=87b53c73-e8b2-4b3d-a8f7-98f177ae2aa0 fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
+2015-04-18T16:34:38.386542+00:00 heroku[router]: at=info code=H80 desc="Maintenance mode" method=GET path="/favicon.ico" host=social-analyst.herokuapp.com request_id=4ae3a2ca-c0c0-45d2-8487-430ba4549dba fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
+2015-04-18T16:39:45.72718
+2+00:00 heroku[router]: at=info code=H80 desc="Maintenance mode" method=GET path="/" host=social-analyst.herokuapp.com request_id=4b0ad507-a247-4d6a-9ef5-8caad0dedb99 fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
+2015-04-18T16:39:46.806613+00:00 heroku[router]: at=info code=H80 desc="Maintenance mode" method=GET path="/favicon.ico" host=social-analyst.herokuapp.com request_id=de883615-0377-400d-a901-bf2b110b4420 fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
+2015-04-18T21:16:19.849367+00:00 heroku[router]: at=info code=H80 desc="Maintenance mode" method=GET path="/" host=social-analyst.herokuapp.com request_id=ed848e33-7ecd-4b4c-8795-ff2375c795e4 fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
+2015-04-18T21:16:21.259782+00:00 heroku[router]: at=info code=H80 desc="Maintenance mode" method=GET path="/favicon.ico" host=social-analyst.herokuapp.com request_id=568db808-375c-4b51-9df8-e7933db17fc4 fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
+2015-04-20T08:32:49+00:00 heroku[slug-compiler]: Slug compilation started
+2015-04-20T08:34:17+00:00 heroku[slug-compiler]: Slug compilation finished
+2015-04-20T08:34:17.823394+00:00 heroku[api]: Release v7 created by sslavian812@yandex.ru
+2015-04-20T08:34:17.823394+00:00 heroku[api]: Deploy dc8c301 by sslavian812@yandex.ru
+2015-04-20T08:35:29.685579+00:00 heroku[router]: at=info code=H80 desc="Maintenance mode" method=GET path="/" host=social-analyst.herokuapp.com request_id=59755783-891e-4572-bea4-7a0934d6e027 fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
+2015-04-20T08:35:30.354947+00:00 heroku[router]: at=info code=H80 desc="Maintenance mode" method=GET path="/favicon.ico" host=social-analyst.herokuapp.com request_id=31ee5a17-0025-466e-84c1-872ce930c3bb fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
+2015-04-20T08:36:24.405172+00:00 heroku[api]: Set maintenance mode off by sslavian812@yandex.ru
+2015-04-20T08:36:29.039073+00:00 heroku[router]: at=error code=H14 desc="No web processes running" method=GET path="/" host=social-analyst.herokuapp.com request_id=b68bc5b6-4d6d-433a-accf-e46243478391 fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
+2015-04-20T08:36:30.121922+00:00 heroku[router]: at=error code=H14 desc="No web processes running" method=GET path="/favicon.ico" host=social-analyst.herokuapp.com request_id=83cf57ef-af65-4a08-ad55-42626a0830e1 fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
+2015-04-20T08:41:23+00:00 heroku[slug-compiler]: Slug compilation started
+2015-04-20T08:43:06+00:00 heroku[slug-compiler]: Slug compilation finished
+2015-04-20T08:43:06.412960+00:00 heroku[api]: Release v8 created by sslavian812@yandex.ru
+2015-04-20T08:43:06.412960+00:00 heroku[api]: Deploy d2bc7
+42 by sslavian812@yandex.ru
+2015-04-20T08:43:15.421876+00:00 heroku[router]: at=error code=H14 desc="No web processes running" method=GET path="/" host=social-analyst.herokuapp.com request_id=67f3e659-1e2c-4e14-b9fb-08a0a8b93f38 fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
+2015-04-20T08:43:16.135161+00:00 heroku[router]: at=error code=H14 desc="No web processes running" method=GET path="/favicon.ico" host=social-analyst.herokuapp.com request_id=ed4ab200-c565-40d8-bc35-808badfc9ab5 fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
+2015-04-20T08:43:22.123490+00:00 heroku[router]: at=error code=H14 desc="No web processes running" method=GET path="/" host=social-analyst.herokuapp.com request_id=3964704f-2a0a-4036-8ff9-99a43762f51e fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
+2015-04-20T08:43:22.745506+00:00 heroku[router]: at=error code=H14 desc="No web processes running" method=GET path="/favicon.ico" host=social-analyst.herokuapp.com request_id=0d50b578-8bd1-4762-95f7-c7a3f9ed749f fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
+2015-04-20T08:43:23.911919+00:00 heroku[router]: at=error code=H14 desc="No web processes running" method=GET path="/" host=social-analyst.herokuapp.com request_id=89d1f910-1c9f-4fb7-9ff7-65505645ba8b fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
+2015-04-20T08:43:24.413265+00:00 heroku[router]: at=error code=H14 desc="No web processes running" method=GET path="/favicon.ico" host=social-analyst.herokuapp.com request_id=a37ff760-fc7d-47ea-9349-6f278080727b fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
+2015-04-20T08:43:26.683669+00:00 heroku[router]: at=error code=H14 desc="No web processes running" method=GET path="/" host=social-analyst.herokuapp.com request_id=b713ff48-0976-431b-9eff-675218d7cec0 fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
+2015-04-20T08:43:27.208145+00:00 heroku[router]: at=error code=H14 desc="No web processes running" method=GET path="/favicon.ico" host=social-analyst.herokuapp.com request_id=0af4b90c-41b8-48ad-a020-64296edb8e25 fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
+2015-04-20T08:44:13.215780+00:00 heroku[router]: at=error code=H14 desc="No web processes running" method=GET path="/" host=social-analyst.herokuapp.com request_id=9a8da231-f6c1-438c-8e41-9ca47b25dce8 fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
+2015-04-20T08:44:13.710468+00:00 heroku[router]: at=error code=H14 desc="No web processes running" method=GET path="/favicon.ico" host=social-analyst.herokuapp.com request_id=fbfb7beb-36fc-45b8-989a-f1a6041cd8a1 fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
