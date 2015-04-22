@@ -1,0 +1,30 @@
+{
+	"group": {
+		"_id": {
+			"path": "id"
+		},
+		"_parent": {
+			"type": "user",
+			"store": "yes"
+		},
+		"properties": {
+			"id": {
+				"type": "string",
+				"index": "not_analyzed"
+			},
+			"description": {
+				"type": "string",
+				"index": "analyzed",
+				"analyzer": "russian"
+			},
+			"name": {
+				"type": "string",
+				"index": "analyzed",
+				"analyzer": "russian"
+			},
+			"members_count": {
+				"type": "long"
+			}
+		}
+	}
+}
