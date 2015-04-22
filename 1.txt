@@ -1,9 +1,3 @@
-2015-04-18T16:17:15.249316+00:00 app[web.1]: 	at com.typesafe.config.impl.SimpleConfigObject.resolveSubstitutions(SimpleConfigObject.java:321)
-2015-04-18T16:17:15.249368+00:00 app[web.1]: 	at com.typesafe.config.impl.SimpleConfigObject.resolveSubstitutions(SimpleConfigObject.java:25)
-2015-04-18T16:17:15.249507+00:00 app[web.1]: 	at com.typesafe.config.impl.ResolveContext.resolve(ResolveContext.java:114)
-2015-04-18T16:17:15.249457+00:00 app[web.1]: 	at com.typesafe.config.impl.ResolveSource.resolveCheckingReplacement(ResolveSource.java:110)
-2015-04-18T16:17:15.249609+00:00 app[web.1]: 	at com.typesafe.config.impl.SimpleConfig.resolveWith(SimpleConfig.java:70)
-2015-04-18T16:17:15.249558+00:00 app[web.1]: 	at com.typesafe.config.impl.ResolveContext.resolve(ResolveContext.java:149)
 2015-04-18T16:17:15.249676+00:00 app[web.1]: 	at com.typesafe.config.impl.SimpleConfig.resolve(SimpleConfig.java:60)
 2015-04-18T16:17:15.249755+00:00 app[web.1]: 	at com.typesafe.config.impl.SimpleConfig.resolve(SimpleConfig.java:33)
 2015-04-18T16:17:15.249978+00:00 app[web.1]: 	at com.typesafe.config.ConfigFactory.loadDefaultConfig(ConfigFactory.java:228)
@@ -99,3 +93,9 @@
 2015-04-20T09:24:13.653901+00:00 heroku[router]: at=error code=H14 desc="No web processes running" method=GET path="/favicon.ico" host=social-analyst.herokuapp.com request_id=06d8ea26-9737-4ca6-a212-4c2e8f5e4a79 fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
 2015-04-20T09:24:16.081819+00:00 heroku[router]: at=error code=H14 desc="No web processes running" method=GET path="/" host=social-analyst.herokuapp.com request_id=0ca742f0-ec24-46f5-a642-a69a8c441af9 fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
 2015-04-20T09:24:17.115812+00:00 heroku[router]: at=error code=H14 desc="No web processes running" method=GET path="/favicon.ico" host=social-analyst.herokuapp.com request_id=ccb8d967-be48-4d68-906e-594e47bb7888 fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
+2015-04-20T09:32:05+00:00 heroku[slug-compiler]: Slug compilation started
+2015-04-20T09:33:47+00:00 heroku[slug-compiler]: Slug compilation finished
+2015-04-20T09:33:47.010284+00:00 heroku[api]: Deploy d197313 by sslavian812@yandex.ru
+2015-04-20T09:33:47.010284+00:00 heroku[api]: Release v12 created by sslavian812@yandex.ru
+2015-04-20T09:34:14.484415+00:00 heroku[router]: at=error code=H14 desc="No web processes running" method=GET path="/" host=social-analyst.herokuapp.com request_id=fd160239-f829-4809-a00b-a459a3ec48e5 fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
+2015-04-20T09:34:15.163618+00:00 heroku[router]: at=error code=H14 desc="No web processes running" method=GET path="/favicon.ico" host=social-analyst.herokuapp.com request_id=00196a75-b66b-4e92-a8ed-c3ed1297b0f7 fwd="188.227.78.184" dyno= connect= service= status=503 bytes=
